@@ -1,14 +1,16 @@
 #Build A SkyDNS Docker Image
 
-*See [SkyDNS](https://github.com/skynetservices/skydns/tree/master)
-*See [Etcd](https://github.com/coreos/etcd)
-*See [Create The Smallest Possible Docker Container](http://blog.xebia.com/2014/07/04/create-the-smallest-possible-docker-container/)
+Let's build a minimun docker image for skydns.
+
+* See [SkyDNS](https://github.com/skynetservices/skydns/tree/master)
+* See [Etcd](https://github.com/coreos/etcd)
+* See [Create The Smallest Possible Docker Container](http://blog.xebia.com/2014/07/04/create-the-smallest-possible-docker-container/)
 
 ###Build image:
 
 	./build
 
-You should see some output:
+You should see some outputs similar to:
 
     ... 
     Successfully built c2a85185ca6f
@@ -55,7 +57,10 @@ Register a CNAME in SkyDNS:
 
 ###Install skydns binary to target:
 
-If you just want to get standalone skydns binary, here copy it from skybuild container:
+If you just want to get standalone skydns binary (statically linked, stripped), here copy it from skybuild container:
 
 	docker run --rm -v /usr/local/bin:/target skybuild cp /gopath/bin/skydns target
-	
+
+or just get from my build:
+
+    curl -L -s -o skydns https://github.com/xuwang/skydns-docker/releases/download/skydns-7025dba3834f/skydns
