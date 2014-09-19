@@ -1,4 +1,4 @@
-#Build A SkyDNS Docker Image
+#Build A Small SkyDNS Docker Image
 
 Let's build a minimun docker image for skydns.
 
@@ -62,11 +62,12 @@ Register a CNAME in SkyDNS:
 
     /usr/bin/docker -d --dns=<docker0_ip> --dns-search=skydns.local
 
-###Install skydns binary to target:
+###Just get  a static linked skydns binary:
 
-If you just want to get standalone skydns binary (statically linked, stripped), here copy it from skybuild container:
+Sometimes a standalone static linked binary is desired, e.g. run it in CoreOS.
+It can be copied from skybuild container to /target:
 
-	docker run --rm -v /usr/local/bin:/target skybuild cp /gopath/bin/skydns target
+	docker run --rm -v /tmp:/target skybuild cp /gopath/bin/skydns /target
 
 or just get from my build:
 
