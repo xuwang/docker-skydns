@@ -1,0 +1,7 @@
+FROM scratch
+MAINTAINER Xu Wang (xuwang@gmail.com)
+
+ADD bin/skydns /skydns
+
+EXPOSE 53
+ENTRYPOINT ["/skydns"]
