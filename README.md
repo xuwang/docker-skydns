@@ -36,16 +36,7 @@ Set SkyDNS configuration in etcd:
 		
 Run SkyDNS service docker:
 
-	docker run --name skydns -p 5353:53 skydns:latest skydns -machines="127.0.0.1:4001"
-
-Route dns port 53 to 5353:
-
-    sudo /sbin/iptables -D INPUT -p udp --dport 5353 -j ACCEPT
-    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
-    sudo /sbin/iptables -A INPUT -p udp --dport 5333 -j ACCEPT
-    sudo /sbin/iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
-    sudo /sbin/iptables -D INPUT -p udp --dport 5333 -j ACCEPT
-    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
+	sudo docker run --name skydns -p 53:53 skydns:latest skydns -machines="127.0.0.1:4001"
 
 Add 127.0.0.1 to /etc/resol.conf:
 
@@ -60,7 +51,7 @@ Register a CNAME in SkyDNS:
 
 ### Set docker to use skydns:
 
-    /usr/bin/docker -d --dns=<docker0_ip> --dns-search=skydns.local
+    /usr/bin/docker -d --dns=<docker_host_ip> --dns-search=skydns.local
 
 ###Just get  a static linked skydns binary:
 
