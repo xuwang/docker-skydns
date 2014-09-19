@@ -40,12 +40,12 @@ Run SkyDNS service docker:
 
 Route dns port 53 to 5353:
 
-    sudo /sbin/iptables -D INPUT -p udp --dport 5333 -j ACCEPT
-    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5333
+    sudo /sbin/iptables -D INPUT -p udp --dport 5353 -j ACCEPT
+    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
     sudo /sbin/iptables -A INPUT -p udp --dport 5333 -j ACCEPT
-    sudo /sbin/iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5333
+    sudo /sbin/iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
     sudo /sbin/iptables -D INPUT -p udp --dport 5333 -j ACCEPT
-    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5333
+    sudo /sbin/iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5353
 
 Add 127.0.0.1 to /etc/resol.conf:
 
