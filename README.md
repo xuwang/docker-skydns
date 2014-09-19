@@ -10,6 +10,8 @@ Let's build a minimun docker image for skydns.
 
 	./build
 
+It builds two images, first skybuild, and then skydns by running skybuilds.
+
 You should see some outputs similar to:
 
     ... 
@@ -19,7 +21,12 @@ You should see some outputs similar to:
     skydns              latest              c2a85185ca6f        1 minutes ago      6.074 MB
     skybuild            latest              7a7ad6bdca60        2 minutes ago      839.4 MB
     
-###Run SkyDNS container:
+
+The skybuild is just a utility and can be removed when you are sure you have a good skydns image:
+
+     docker rmi skybuild:latest
+
+###Run skydns container:
 
 SkyDNS requires [Etcd](https://github.com/coreos/etcd) running on your system.
 
@@ -51,7 +58,7 @@ Register a CNAME in SkyDNS:
     ping mygoogle.skydns.local
 
 
-### Tell Docker to use SkyDNS:
+### Set docker to use skydns:
 
     /usr/bin/docker -d --dns=<docker0_ip> --dns-search=skydns.local
 
